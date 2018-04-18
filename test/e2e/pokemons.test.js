@@ -80,4 +80,20 @@ describe('Pokemen API', () => {
                 assert.deepEqual(updated, char);
             });
     });
+
+    const getFields = ({ _id, name, type, location }) => ({ _id, name, type, location });
+
+    it('gets all pokemen but only by id, name, type, and location', () => {
+        return request.get('/pokemons')
+            .then(({ body }) => {
+                assert.deepEqual(body, [bulb, char].map(getFields));
+            });
+    });
+
+    it('queries pokemans', () => {
+        return request.get('/pokemons?dexNum=1')
+            .then(({ body }) => {
+                assert.deepEqual(body, [bulb].map(getFields));
+            });
+    });
 });
