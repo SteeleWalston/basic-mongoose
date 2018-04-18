@@ -28,17 +28,6 @@ describe('Pokemen API', () => {
         dexNum: 4
     };
 
-    let squirt = {
-        name: 'Squirtle',
-        type: 'Water',
-        location: 'Professor Oaks Lab',
-        metaData: {
-            strongAgainst: 'Fire',
-            weakAgainst: 'Grass'
-        },
-        dexNum: 7
-    };
-
     it('saves a pokeman', () => {
         return request.post('/pokemons')
             .send(bulb)
