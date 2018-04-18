@@ -96,4 +96,14 @@ describe('Pokemen API', () => {
                 assert.deepEqual(body, [bulb].map(getFields));
             });
     });
+
+    it('deletes a pokemon', () => {
+        return request.delete(`/pokemons/${char._id}`)
+            .then(() => {
+                return Pokemon.findById(char._id);
+            })
+            .then(found => {
+                assert.isNull(found);
+            });
+    });
 });
