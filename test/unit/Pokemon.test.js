@@ -37,4 +37,13 @@ describe('Pokemon model', () => {
         assert.equal(errors.type.kind, 'required');
     });
 
+    it('type must be enum', () => {
+        const pokemon = new Pokemon({
+            name: 'test',
+            type: 'bad',
+        });
+        const errors = getValidationErrors(pokemon.validateSync());
+        assert.equal(errors['type'].kind, 'enum');
+    });
+
 });
