@@ -66,4 +66,18 @@ describe('Pokemen API', () => {
                 assert.deepEqual(body, char);
             });
     });
+
+    it('updates a pokemon', () => {
+        char.type = 'Flying';
+
+        return request.put(`/pokemons/${char._id}`)
+            .send(char)
+            .then(({ body }) => {
+                assert.deepEqual(body, char);
+                return Pokemon.findById(char._id).then(roundTrip); 
+            })
+            .then(updated => {
+                assert.deepEqual(updated, char);
+            });
+    });
 });
