@@ -24,4 +24,17 @@ describe('Pokemon model', () => {
         assert.isUndefined(pokemon.validateSync());
     });
 
+    const getValidationErrors = validation => {
+        assert.isDefined(validation, 'expected validation errors');
+        return validation.errors;
+    };
+
+    it('required fields', () => {
+        const pokemon = new Pokemon({});
+        const errors = getValidationErrors(pokemon.validateSync());
+        assert.equal(Object.keys(errors).length, 2);
+        assert.equal(errors.name.kind, 'required');
+        assert.equal(errors.type.kind, 'required');
+    });
+
 });
