@@ -106,4 +106,12 @@ describe('Pokemen API', () => {
                 assert.isNull(found);
             });
     });
+
+    it('returns 404 if pokemon not found', () => {
+        return request.get(`/pokemons/${char._id}`)
+            .then(response => {
+                assert.equal(response.status, 404);
+                assert.match(response.body.error, /^Pokemon id/);
+            });
+    });
 });
