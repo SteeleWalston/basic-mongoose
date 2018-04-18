@@ -20,6 +20,8 @@ describe('Pokemon model', () => {
             _id: pokemon._id,
             ...data
         });
+
+        assert.isUndefined(pokemon.validateSync());
     });
 
 });
